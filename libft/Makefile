@@ -6,7 +6,7 @@
 #    By: erli <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 17:45:59 by erli              #+#    #+#              #
-#    Updated: 2019/01/15 12:35:00 by erli             ###   ########.fr        #
+#    Updated: 2019/01/18 18:25:25 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -93,18 +93,18 @@ val			:		$(OBJS) includes/libft.h includes/ft_con_tab.h		\
 					$(CC) -g $(CFLAG) $(INCL) -o test $(OBJS) main.c -L.  -lft
 
 clean		:
-					$(RM) $(OBJS)
+					@$(RM) $(OBJS)
 
 fclean		:		clean
-					$(RM) $(NAME)
+					@$(RM) $(NAME)
 
 re			:		fclean all
 
 delsav		:
-					$(RM) */*~
-					$(RM) *~
-					$(RM) \#*\#
-					$(RM) */\#*\#
+					@$(RM) */*~
+					@$(RM) *~
+					@$(RM) \#*\#
+					@$(RM) */\#*\#
 
 reset		:		delsav fclean
 
