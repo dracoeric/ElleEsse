@@ -6,7 +6,7 @@
 #    By: erli <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 17:45:59 by erli              #+#    #+#              #
-#    Updated: 2019/01/18 18:25:25 by erli             ###   ########.fr        #
+#    Updated: 2019/01/18 20:16:45 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -98,7 +98,9 @@ clean		:
 fclean		:		clean
 					@$(RM) $(NAME)
 
-re			:		fclean all
+re			:
+					@make fclean
+					@make all
 
 delsav		:
 					@$(RM) */*~
@@ -106,6 +108,9 @@ delsav		:
 					@$(RM) \#*\#
 					@$(RM) */\#*\#
 
-reset		:		delsav fclean
+reset		:
+					@make fclean
+					@make delsav
+					@rm -Rf objs/
 
-.PHONY		:		clean delsav
+.PHONY		:		clean delsav re fclean reset
