@@ -6,7 +6,7 @@
 /*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 11:08:07 by erli              #+#    #+#             */
-/*   Updated: 2019/01/15 12:33:42 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/21 13:27:21 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int				ft_atoi(const char *str);
 void			ft_free_mat_int(int **mat, int i);
 int				ft_int_in_ptr(int a, int *tab, size_t len);
 void			ft_merge_sort_tab(int *src, int *dest, size_t len);
+void			ft_merge_sort_tab_str(char **src, char **dest, size_t len);
 void			ft_swap_int(int *a, int *b);
+void			ft_swap_str(char **a, char **b);
 
 int				ft_char_at_pos(char c, char *str);
 int				ft_char_in_str(char c, char *str);
