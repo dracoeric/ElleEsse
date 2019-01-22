@@ -6,13 +6,17 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:32:09 by erli              #+#    #+#             */
-/*   Updated: 2019/01/21 12:27:25 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/22 13:29:45 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <sys/stat.h>
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
 
 static	void	manage_options_2(char c, int *options)
 {
@@ -35,7 +39,6 @@ static	void	manage_options_2(char c, int *options)
 		ft_printf(str, c);
 		exit(0);
 	}
-
 }
 
 static	void	manage_option(char c, int *options)
@@ -84,29 +87,52 @@ static	int		get_options(int argc, char **argv, int *options)
 	return (i - 1);
 }
 
-static	void	check_arg(int argc, char **argv)
+static	void	check_arg(int *argc, char **argv)
 {
-	int i;
+	int			i;
+	struct stat	data[1];
 
+	ft_merge_sort_tab_str(argv + 1, argv + 1, *argc - 1);
 	i = 1;
-	
-
+	while (i < *argc)
+	{
+		if (stat(argv[i], data) != 0)
+		{
+			ft_printf("ls: %s: ", argv[i]);
+			perror(NULL);
+			argv[i][0] = 0;
+		}
+		i++;
+	}
 }
 
 int				main(int argc, char **argv)
 {
 	int options;
 	int offset;
+	int	mult_path;
 	int i;
 
+/*	struct winsize win;
+	ioctl(0, TIOCGWINSZ, &win);
+	ft_printf("\e[48;5;226m\e[38;5;21mnum of col %hu\e[0m\n", win.ws_col);
+*/
 	i = 1;
 	options = 0;
+	mult_path = 0;
 	offset = get_options(argc, argv, &options);
-	ft_printf("options = %d\n", options);
-	check_arg(argc - offset, argv + offset);
+	if (argc - offset > 2)
+		mult_path = 1;
+	check_arg(&argc - offset, argv + offset);
+	
 	while (i + offset < argc)
 	{
-		ft_printf("arg %d = '%s'\n", i, argv[i + offset]);
+		if (argv[i][0] != 0)
+		{
+			if (mult_path == 1)
+				ft_printf("%s:\n", argv[i + offset]);
+			ls_list(argv[i], options);
+		}
 		i++;
 	}
 }

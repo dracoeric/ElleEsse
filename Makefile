@@ -6,17 +6,17 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/18 17:49:02 by erli              #+#    #+#              #
-#    Updated: 2019/01/18 18:26:14 by erli             ###   ########.fr        #
+#    Updated: 2019/01/22 13:29:57 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME 			=	ls
+NAME 			=	ft_ls
 
 SRCSDIR			=	srcs
 
 OBJSDIR			=	objs
 
-SRCS			= 	main.c
+SRCS			= 	main.c			ls_merge_sort.c			ls_list.c
 
 OBJS			= 	$(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 
@@ -39,7 +39,6 @@ $(NAME)			:	$(OBJS) $(LIB) includes/ft_ls.h
 $(LIB)			:	
 					@make -C libft/
 					@make -C libft/ clean
-					echo "<span style='color: red;' /><center>Fields marked with <strong>&#40; &#42; &#421</strong> are mandatory!</center></span>"
 
 $(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c includes/ft_ls.h
 					@mkdir -p $(OBJSDIR)

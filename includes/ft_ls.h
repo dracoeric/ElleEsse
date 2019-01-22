@@ -6,13 +6,15 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:36:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/18 19:12:19 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/22 13:30:22 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 
 # define FT_LS_H
+
+# include <string.h>
 
 # define LS_OPT_L(x) ((x & 1) == 1)
 # define LS_OPT_UR(x) (((x >> 1) & 1) == 1)
@@ -26,5 +28,8 @@
 # define LS_OPT_UG(x) (((x >> 9) & 1) == 1)
 # define LS_OPT_AT(x) (((x >> 10) & 1) == 1)
 
+void			ls_merge_sort(char **tab, size_t len,
+					int (*f)(char *, char *));
+void			ls_list(char *path, int options);
 #endif
 
