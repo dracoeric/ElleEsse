@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_list.c                                          :+:      :+:    :+:   */
+/*   ls_print_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 13:17:11 by erli              #+#    #+#             */
-/*   Updated: 2019/01/23 15:28:02 by erli             ###   ########.fr       */
+/*   Created: 2019/01/23 09:46:03 by erli              #+#    #+#             */
+/*   Updated: 2019/01/23 15:22:42 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,29 @@
 #include "libft.h"
 #include <dirent.h>
 
-void		ls_list(char *str, int options)
+void		ls_print_list(char *str, int count, int options)
 {
-	DIR				*dirp;
+	char			*arg[count];
 	struct dirent	*dir;
-	int				count;
+	DIR				*dirp;
+	int				i;
 
-	count = 1;
-	dirp = opendir(str);
-	if (dirp != NULL)
-		count = 0;
-	while (dirp != NULL && (dir = readdir(dirp)))
-		count++;
-	ls_print_list(str, (count == 0 ? 1 : count), options);
+	if (!(dirp = opendir(str)))
+		*arg = str;
+	else
+	{
+		i = 0;
+		while ((dir = readdir(dirp)))
+		{
+			arg[i] = dir->d_name;
+			i++;
+		}
+		if (i == 0)
+			count = 0;
+	}
+	ls_sort(arg, count, options);
+	ls_trim(arg, &count, options);
+	if (LS_OPT_MULT(options) && dirp != NULL)
+		ft_printf("%s:\n", str);
+	ls_print_format(arg, count, options);
 }

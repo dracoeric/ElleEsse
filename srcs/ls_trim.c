@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_list.c                                          :+:      :+:    :+:   */
+/*   ls_trim.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/22 13:17:11 by erli              #+#    #+#             */
-/*   Updated: 2019/01/23 15:28:02 by erli             ###   ########.fr       */
+/*   Created: 2019/01/23 11:39:28 by erli              #+#    #+#             */
+/*   Updated: 2019/01/23 12:48:38 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "libft.h"
-#include <dirent.h>
 
-void		ls_list(char *str, int options)
+void		ls_trim(char **arg, int *len, int options)
 {
-	DIR				*dirp;
-	struct dirent	*dir;
-	int				count;
+	int i;
+	int j;
+	int	old_len;
 
-	count = 1;
-	dirp = opendir(str);
-	if (dirp != NULL)
-		count = 0;
-	while (dirp != NULL && (dir = readdir(dirp)))
-		count++;
-	ls_print_list(str, (count == 0 ? 1 : count), options);
+	i = 0;
+	j = 0;
+	old_len = *len;
+	if (!LS_OPT_A(options))
+	{
+		while (i < old_len)
+		{
+			if (arg[i][0] == '.' || arg[i][0] == 0)
+			{
+				*len -= (arg[i][0] == '.' ? 1 : 0);
+				while (j < old_len && arg[j][0] == '.')
+					j++;
+				if (j == old_len)
+					return ;
+				arg[i] = arg[j];
+				arg[j++] = "";
+			}
+			i++;
+		}
+	}
 }
