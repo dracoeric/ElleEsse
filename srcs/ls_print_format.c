@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 13:00:48 by erli              #+#    #+#             */
-/*   Updated: 2019/01/23 15:31:26 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/25 09:19:23 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static	void	ls_print_default(char **arg, int len, int options)
 
 }
 */
-void			ls_print_format(char **arg, int len, int options)
+void			ls_print_format(char *str, char **arg, int len, int options)
 {
 	if (len == 0)
 		return ;
 	if (LS_OPT_L(options))
-		ls_print_long(arg, len, options);
+		ls_print_long(str, arg, len, options);
 /*	else if (LS_OPT_L(options))
 		ls_print_long(arg, len, options);
 	else

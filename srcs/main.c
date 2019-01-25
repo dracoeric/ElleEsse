@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:32:09 by erli              #+#    #+#             */
-/*   Updated: 2019/01/23 14:08:07 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/25 12:31:44 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ static	void	manage_options_2(char c, int *options)
 		*options = (*options | 256);
 	else if (c == 'G' && !(LS_OPT_UG(*options)))
 		*options = (*options | 512);
-	else if (c == '@' && !(LS_OPT_AT(*options)))
-		*options = (*options | 1024);
-	else if (c == 'e' && !(LS_OPT_E(*options)))
-		*options = (*options | 2048);
 	else
 	{
 		ft_printf(str, c);
@@ -95,7 +91,7 @@ static	void	check_arg(int argc, char **argv)
 	int			i;
 	struct stat	data[1];
 
-	ft_merge_sort_tab_str(argv + 1, argv + 1, argc - 1);
+//	ft_merge_sort_tab_str(argv + 1, argv + 1, argc - 1);
 	i = 1;
 	while (i < argc)
 	{
@@ -123,17 +119,24 @@ int				main(int argc, char **argv)
 	i = 1;
 	options = 0;
 	offset = get_options(argc, argv, &options);
+	check_arg(argc - offset, argv + offset);
 	if (argc - offset > 2)
 		options += 4096;
-	check_arg(argc - offset, argv + offset);
 	if (argc - offset == 1)
 		ls_list(".", options);
+	else
+	{
+		ft_printf("argv = %ts\n", argv, argc);
+		ls_sort(argv + offset + 1, argc - offset - 1, options);
+		ft_printf("argv = %ts\n", argv, argc);
+		ls_sort_argv(argv + (offset + 1), argc - offset - 1);
+	}
 	while (i + offset < argc)
 	{
-		if (argv[i][0] != 0)
-			ls_list(argv[i], options);
+		if (argv[i + offset][0] != 0)
+			ls_list(argv[i + offset], options);
 		i++;
-		if (LS_OPT_MULT(options) && i != argc - offset)
+		if (i != argc - offset)
 			write(1, "\n", 1);
 	}
 }

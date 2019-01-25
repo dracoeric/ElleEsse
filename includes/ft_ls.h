@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:36:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/23 14:20:38 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/25 11:31:28 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define FT_LS_H
 
 # include <string.h>
+# include <sys/stat.h>
 
 # define LS_OPT_L(x) ((x & 1) == 1)
 # define LS_OPT_UR(x) (((x >> 1) & 1) == 1)
@@ -26,18 +27,26 @@
 # define LS_OPT_LG(x) (((x >> 7) & 1) == 1)
 # define LS_OPT_D(x) (((x >> 8) & 1) == 1)
 # define LS_OPT_UG(x) (((x >> 9) & 1) == 1)
-# define LS_OPT_AT(x) (((x >> 10) & 1) == 1)
-# define LS_OPT_E(x) (((x >> 11) & 1) == 1)
 # define LS_OPT_MULT(x) (((x >> 12) & 1) == 1)
+
+typedef	struct	s_ls_data
+{
+	char		*base_path;
+	char		is_dir;
+	char		**arg;
+	struct stat	*data;
+	int			options;
+}				t_ls_data;
 
 void			ls_merge_sort(char **tab, size_t len,
 					int (*f)(char *, char *));
 void			ls_list(char *path, int options);
-void			ls_print_list(char *str, int count, int options);
 void			ls_sort(char **arg, int len, int options);
+void			ls_sort_argv(char **arg, int len);
 void			ls_trim(char **arg, int *len, int options);
-void			ls_print_format(char **arg, int len, int options);
-void			ls_print_long(char **arg, int len, int options);
-void			ls_print_mode(char *file, int options);
+void			ls_print_format(char *str, char **arg, int len, int options);
+void			ls_print_long(char *str, char **arg, int len, int options);
+void			ls_print_mode(char *str, char *file, int options);
+char			*ls_make_path(char *base_path, char *file, char *full_path);
 #endif
 

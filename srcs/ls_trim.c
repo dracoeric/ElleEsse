@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 11:39:28 by erli              #+#    #+#             */
-/*   Updated: 2019/01/23 12:48:38 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/25 10:14:50 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ void		ls_trim(char **arg, int *len, int options)
 				*len -= (arg[i][0] == '.' ? 1 : 0);
 				while (j < old_len && arg[j][0] == '.')
 					j++;
-				if (j == old_len)
-					return ;
-				arg[i] = arg[j];
-				arg[j++] = "";
+				if (j < old_len)
+				{
+					arg[i] = arg[j];
+					arg[j++] = "";
+				}
 			}
 			i++;
 		}
