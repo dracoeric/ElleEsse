@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 11:30:25 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 17:30:17 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/25 19:29:56 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,22 @@ static	void	ls_trim_arg(char **argv, int *len)
 	int		i;
 	int		j;
 	int		old_len;
-	char	c;
 
 	i = 0;
 	j = 0;
-	c = 2;
 	old_len = *len;
 	while (i < old_len)
 	{
-		if (argv[i][0] == '\0')
+		if (argv[i][0] == '\0' || argv[i][0] == 2)
 		{
 			if (argv[i][0] == 0)
 				*len -= 1;
-			while (j < old_len && (argv[j][0] == '\0' || argv[i][0] == 2))
+			while (j < old_len && (argv[j][0] == '\0' || argv[j][0] == 2))
 				j++;
 			if (j < old_len)
 			{
 				argv[i] = argv[j];
-				argv[j++] = &c;
+				argv[j][0] = 2;
 			}
 		}
 		i++;
