@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 11:30:25 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 12:28:25 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/25 17:30:17 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,34 @@
 
 static	void	ls_trim_arg(char **argv, int *len)
 {
-	int i;
-	int j;
-	int old_len;
+	int		i;
+	int		j;
+	int		old_len;
+	char	c;
 
 	i = 0;
 	j = 0;
+	c = 2;
 	old_len = *len;
 	while (i < old_len)
 	{
 		if (argv[i][0] == '\0')
 		{
-			*len -= 1;
-			while (j < old_len && argv[j][0] != '\0')
+			if (argv[i][0] == 0)
+				*len -= 1;
+			while (j < old_len && (argv[j][0] == '\0' || argv[i][0] == 2))
 				j++;
 			if (j < old_len)
 			{
 				argv[i] = argv[j];
-				argv[j++] = "";
+				argv[j++] = &c;
 			}
 		}
 		i++;
 	}
 }
 
-void			ls_sort_argv(char **argv, int len)
+int				ls_sort_argv(char **argv, int len)
 {
 	char	*dup[len];
 	int		i;
@@ -48,19 +51,19 @@ void			ls_sort_argv(char **argv, int len)
 
 	i = 0;
 	n_dir = 0;
-	ft_printf("in sort arg = %ts, dup = %ts\n", argv, len, dup, len);
 	while (i < len)
 	{
-		if (opendir(argv[i]))
+		if (argv[i][0] != '\0' && opendir(argv[i]) != NULL)
 		{
 			dup[n_dir++] = argv[i];
 			argv[i] = "";
 		}
 		i++;
 	}
-	ft_printf("in sort arg = %ts, dup = %ts\n", argv, len, dup, len);
 	ls_trim_arg(argv, &i);
+	len = i + n_dir;
 	n_dir = 0;
 	while (i < len)
 		argv[i++] = dup[n_dir++];
+	return (len);
 }

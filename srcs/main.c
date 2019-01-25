@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:32:09 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 12:31:44 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/25 18:02:32 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <stdio.h>
-#include <string.h>
-#include <errno.h>
 #include <unistd.h>
+#include <dirent.h>
 
 static	void	manage_options_2(char c, int *options)
 {
@@ -91,7 +90,6 @@ static	void	check_arg(int argc, char **argv)
 	int			i;
 	struct stat	data[1];
 
-//	ft_merge_sort_tab_str(argv + 1, argv + 1, argc - 1);
 	i = 1;
 	while (i < argc)
 	{
@@ -111,12 +109,7 @@ int				main(int argc, char **argv)
 	int offset;
 	int i;
 
-/*
-**	struct winsize win;
-**	ioctl(0, TIOCGWINSZ, &win);
-**	ft_printf("\e[48;5;226m\e[38;5;21mnum of col %hu\e[0m\n", win.ws_col);
-*/
-	i = 1;
+	i = 0;
 	options = 0;
 	offset = get_options(argc, argv, &options);
 	check_arg(argc - offset, argv + offset);
@@ -126,17 +119,15 @@ int				main(int argc, char **argv)
 		ls_list(".", options);
 	else
 	{
-		ft_printf("argv = %ts\n", argv, argc);
 		ls_sort(argv + offset + 1, argc - offset - 1, options);
-		ft_printf("argv = %ts\n", argv, argc);
-		ls_sort_argv(argv + (offset + 1), argc - offset - 1);
+		argc = ls_sort_argv(argv + (offset + 1), argc - offset - 1);
 	}
-	while (i + offset < argc)
+	while (i < argc)
 	{
-		if (argv[i + offset][0] != 0)
-			ls_list(argv[i + offset], options);
+		if (argv[i + offset + 1][0] != 0)
+			ls_list(argv[i + offset + 1], options);
 		i++;
-		if (i != argc - offset)
+		if (i != argc && opendir(argv[i + offset + 1]) != NULL)
 			write(1, "\n", 1);
 	}
 }

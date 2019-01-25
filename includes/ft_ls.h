@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:36:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 11:31:28 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/25 18:43:08 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef	struct	s_ls_data
 	char		is_dir;
 	char		**arg;
 	struct stat	*data;
+	int			count;
 	int			options;
 }				t_ls_data;
 
@@ -42,11 +43,10 @@ void			ls_merge_sort(char **tab, size_t len,
 					int (*f)(char *, char *));
 void			ls_list(char *path, int options);
 void			ls_sort(char **arg, int len, int options);
-void			ls_sort_argv(char **arg, int len);
+int				ls_sort_argv(char **arg, int len);
 void			ls_trim(char **arg, int *len, int options);
-void			ls_print_format(char *str, char **arg, int len, int options);
-void			ls_print_long(char *str, char **arg, int len, int options);
-void			ls_print_mode(char *str, char *file, int options);
+void			ls_print_format(t_ls_data *ls_data);
+void			ls_print_long(t_ls_data *ls_data);
+void			ls_print_mode(t_ls_data *ls_data, int i, int path_len);
 char			*ls_make_path(char *base_path, char *file, char *full_path);
 #endif
-

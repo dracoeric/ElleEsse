@@ -1,0 +1,5 @@
+/*
+**	struct winsize win;
+**	ioctl(0, TIOCGWINSZ, &win);
+**	ft_printf("\e[48;5;226m\e[38;5;21mnum of col %hu\e[0m\n", win.ws_col);
+*/
