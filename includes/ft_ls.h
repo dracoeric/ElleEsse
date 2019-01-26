@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:36:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 11:17:40 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 17:21:21 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@
 
 typedef	struct	s_ls_data
 {
-	char		*base_path;
-	char		is_dir;
-	char		**arg;
-	struct stat	*data;
-	int			count;
-	int			options;
-	int			max_links;
-	int			max_size;
+	char			*base_path;
+	char			is_dir;
+	char			**arg;
+	struct stat		*data;
+	int				count;
+	int				options;
+	unsigned int	max_link;
+	unsigned int	max_size;
+	unsigned int	max_uid;
+	unsigned int	max_gid;
 }				t_ls_data;
 
 void			ls_merge_sort(char **tab, size_t len,

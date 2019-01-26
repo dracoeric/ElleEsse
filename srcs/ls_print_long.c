@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 13:37:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 10:51:32 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 17:22:04 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			ls_print_long(t_ls_data *ls_data)
 	int			path_len;
 
 	if (ls_data->is_dir)
-		ls_print_total_blocks_size(ls_data);
+		ls_print_total_block_size(ls_data);
 	i = 0;
 	while (i < ls_data->count)
 	{

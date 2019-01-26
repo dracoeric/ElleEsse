@@ -6,13 +6,15 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 13:17:11 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 11:22:50 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 17:20:13 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "libft.h"
 #include <dirent.h>
+#include <grp.h>
+#include <pwd.h>
 
 static	int		ls_parse_arg(char *str, char **arg, int *count)
 {
@@ -48,11 +50,19 @@ static	void	ls_get_stat_data_i(t_ls_data *ls_data, int i, int path_len)
 	else
 		lstat(ls_make_path(ls_data->base_path, (ls_data->arg)[i], path),
 		(ls_data->data) + i);
-	if ((ls_data->data)[i].st_nlinks > ls_data->max_links)
-		ls_data->max_links = (ls_data->data)[i].st_nlinks;
-	if ((ls_data->data)[i].st_size > ls_data->max_size)
-		ls_data->max_size = (ls_data->data)[i].st_size;
-	
+	if (LS_OPT_L(ls_data->options) || LS_OPT_LG(ls_data->options))
+	{
+		if ((unsigned int)(ls_data->data)[i].st_nlink > ls_data->max_link)
+			ls_data->max_link = (ls_data->data)[i].st_nlink;
+		if ((unsigned int)(ls_data->data)[i].st_size > ls_data->max_size)
+			ls_data->max_size = (ls_data->data)[i].st_size;
+		if (ft_strlen(getpwuid((ls_data->data)[i].st_uid)->pw_name)
+			> ls_data->max_uid)
+			ls_data->max_size = (ls_data->data)[i].st_size;
+		if (ft_strlen(getgrgid((ls_data->data)[i].st_gid)->gr_name)
+			> ls_data->max_gid)
+			ls_data->max_size = (ls_data->data)[i].st_size;
+	}	
 }
 
 static	void	ls_get_stat_data(t_ls_data *ls_data)
@@ -60,8 +70,10 @@ static	void	ls_get_stat_data(t_ls_data *ls_data)
 	int i;
 	int	path_len;
 
-	ls_data->max_links = 0;
+	ls_data->max_link = 0;
 	ls_data->max_size = 0;
+	ls_data->max_uid = 0;
+	ls_data->max_uid = 0;
 	i = 0;
 	while (i < ls_data->count)
 	{

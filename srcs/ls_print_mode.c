@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 14:19:20 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 18:42:07 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 17:34:26 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,12 @@ void			ls_print_mode(t_ls_data *ls_data, int i, int path_len)
 	ls_read_file_type((ls_data->data) + i, str);
 	ls_read_rights((ls_data->data) + i, str);
 	acl = NULL;
-	acl = acl_get_file(ls_make_path(ls_data->base_path, (ls_data->arg)[i],
-				path), ACL_TYPE_EXTENDED);
-	num_attr = listxattr(path, NULL, 0, XATTR_NOFOLLOW);
+/*	acl = acl_get_file(ls_make_path(ls_data->base_path, (ls_data->arg)[i],
+ *				path), ACL_TYPE_EXTENDED);
+ */	acl = acl_get_file(ls_make_path(ls_data->base_path, (ls_data->arg)[i],
+				path), ACL_TYPE_ACCESS);
+/*	num_attr = listxattr(path, NULL, 0, XATTR_NOFOLLOW);*/
+	num_attr = listxattr(path, NULL, 0);
 	if (acl != NULL)
 	{
 		str[10] = '+';

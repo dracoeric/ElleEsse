@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/18 17:49:02 by erli              #+#    #+#              #
-#    Updated: 2019/01/26 10:58:34 by erli             ###   ########.fr        #
+#    Updated: 2019/01/26 17:23:41 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,13 +16,13 @@ SRCSDIR			=	srcs
 
 OBJSDIR			=	objs
 
-SRCS			= 	main.c				ls_merge_sort.c			ls_list.c			\
-					ls_sort.c			ls_sort_argv.c			ls_trim.c			\
-					ls_print_format.c	ls_print_long.c			ls_print_mode.c		\
-					ls_make_path.c		ls_print_total_blocks_size.c				\
-					ls_print_links.c	ls_print_owner.c		ls_print_group.c	\
-					ls_print_size.c		ls_print_date.c			ls_print_file_name.c\
-					
+SRCS			= 	main.c				ls_merge_sort.c			ls_list.c		\
+					ls_sort.c			ls_sort_argv.c			ls_trim.c		\
+					ls_print_format.c	ls_print_long.c			ls_print_mode.c	\
+					ls_make_path.c		ls_print_total_block_size.c				\
+					ls_print_links.c	ls_print_owner.c		ls_print_group.c\
+					ls_print_size.c		ls_print_date.c							\
+										ls_print_file_name.c					\
 
 OBJS			= 	$(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 
