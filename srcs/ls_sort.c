@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 10:51:32 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 12:30:07 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 10:25:46 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static	int		ls_sort_acces_time(char *a, char *b)
 
 	stat(a, data_a);
 	stat(b, data_b);
-	return (data_a->st_atimespec.tv_sec - data_b->st_atimespec.tv_sec);
+	return (data_a->st_atim.tv_sec - data_b->st_atim.tv_sec);
+/*	return (data_a->st_atimespec.tv_sec - data_b->st_atimespec.tv_sec);*/
 }
 
 static	int		ls_sort_mod_time(char *a, char *b)
@@ -31,7 +32,8 @@ static	int		ls_sort_mod_time(char *a, char *b)
 
 	stat(a, data_a);
 	stat(b, data_b);
-	return (data_a->st_mtimespec.tv_sec - data_b->st_mtimespec.tv_sec);
+/*	return (data_a->st_mtimespec.tv_sec - data_b->st_mtimespec.tv_sec);*/
+	return (data_a->st_atim.tv_sec - data_b->st_atim.tv_sec);
 }
 
 static	int		ls_sort_lexi(char *a, char *b)

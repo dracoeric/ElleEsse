@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:36:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 18:43:08 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 11:17:40 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef	struct	s_ls_data
 	struct stat	*data;
 	int			count;
 	int			options;
+	int			max_links;
+	int			max_size;
 }				t_ls_data;
 
 void			ls_merge_sort(char **tab, size_t len,
@@ -47,6 +49,13 @@ int				ls_sort_argv(char **arg, int len);
 void			ls_trim(char **arg, int *len, int options);
 void			ls_print_format(t_ls_data *ls_data);
 void			ls_print_long(t_ls_data *ls_data);
+void			ls_print_total_block_size(t_ls_data *ls_data);
 void			ls_print_mode(t_ls_data *ls_data, int i, int path_len);
+void			ls_print_links(t_ls_data *ls_data, int i);
+void			ls_print_owner(t_ls_data *ls_data, int i);
+void			ls_print_group(t_ls_data *ls_data, int i);
+void			ls_print_size(t_ls_data *ls_data, int i);
+void			ls_print_date(t_ls_data *ls_data, int i);
+void			ls_print_file_name(t_ls_data *ls_data, int i);
 char			*ls_make_path(char *base_path, char *file, char *full_path);
 #endif

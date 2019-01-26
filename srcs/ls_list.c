@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 13:17:11 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 18:52:01 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 11:22:50 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ static	void	ls_get_stat_data_i(t_ls_data *ls_data, int i, int path_len)
 	else
 		lstat(ls_make_path(ls_data->base_path, (ls_data->arg)[i], path),
 		(ls_data->data) + i);
+	if ((ls_data->data)[i].st_nlinks > ls_data->max_links)
+		ls_data->max_links = (ls_data->data)[i].st_nlinks;
+	if ((ls_data->data)[i].st_size > ls_data->max_size)
+		ls_data->max_size = (ls_data->data)[i].st_size;
+	
 }
 
 static	void	ls_get_stat_data(t_ls_data *ls_data)
@@ -55,6 +60,8 @@ static	void	ls_get_stat_data(t_ls_data *ls_data)
 	int i;
 	int	path_len;
 
+	ls_data->max_links = 0;
+	ls_data->max_size = 0;
 	i = 0;
 	while (i < ls_data->count)
 	{

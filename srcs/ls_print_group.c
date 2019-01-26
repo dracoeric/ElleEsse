@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_owner.c                                   :+:      :+:    :+:   */
+/*   ls_print_group.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 19:49:50 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 11:33:36 by erli             ###   ########.fr       */
+/*   Created: 2019/01/26 11:33:44 by erli              #+#    #+#             */
+/*   Updated: 2019/01/26 11:38:02 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "ft_ls"
 #include "libft.h"
-#include <unistd.h>
-#include <pwd.h>
+#include <prg.h>
 
-void				ls_print_owner(t_ls_data *ls_data, int i)
+void		ls_print_group(t_ls_data *ls_data)
 {
-	
-	ft_putstr((getpwuid((ls_data->data)[i].st_uid))->pw_name);
-	write(1, " ", 1);
+
+
+
 }
