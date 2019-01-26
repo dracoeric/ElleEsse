@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:36:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 17:21:21 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 18:48:56 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <string.h>
 # include <sys/stat.h>
+# include <dirent.h>
 
 # define LS_OPT_L(x) ((x & 1) == 1)
 # define LS_OPT_UR(x) (((x >> 1) & 1) == 1)
@@ -31,6 +32,7 @@
 
 typedef	struct	s_ls_data
 {
+	DIR				*dirp;
 	char			*base_path;
 	char			is_dir;
 	char			**arg;
@@ -45,6 +47,7 @@ typedef	struct	s_ls_data
 
 void			ls_merge_sort(char **tab, size_t len,
 					int (*f)(char *, char *));
+int				ls_file_is_dir(char *file);
 void			ls_list(char *path, int options);
 void			ls_sort(char **arg, int len, int options);
 int				ls_sort_argv(char **arg, int len);
@@ -53,6 +56,7 @@ void			ls_print_format(t_ls_data *ls_data);
 void			ls_print_long(t_ls_data *ls_data);
 void			ls_print_total_block_size(t_ls_data *ls_data);
 void			ls_print_mode(t_ls_data *ls_data, int i, int path_len);
+unsigned int	ls_get_width(unsigned int nb);
 void			ls_print_links(t_ls_data *ls_data, int i);
 void			ls_print_owner(t_ls_data *ls_data, int i);
 void			ls_print_group(t_ls_data *ls_data, int i);

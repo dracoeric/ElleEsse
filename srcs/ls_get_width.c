@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_date.c                                    :+:      :+:    :+:   */
+/*   ls_get_width.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/26 16:53:49 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 17:50:56 by erli             ###   ########.fr       */
+/*   Created: 2019/01/26 17:38:33 by erli              #+#    #+#             */
+/*   Updated: 2019/01/26 17:41:18 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "libft.h"
 
-void			ls_print_date(t_ls_data *ls_data, int i)
+unsigned int	ls_get_width(unsigned int nb)
 {
-	if (ls_data != NULL && i != 0)
-		ft_printf("date ");
+	int width;
+	int pow;
+
+	pow = 1;
+	width = 1;
+	while (nb / pow > 10)
+	{
+		pow *= 10;
+		width++;
+	}
+	return (width);
 }

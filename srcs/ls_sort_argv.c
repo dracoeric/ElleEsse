@@ -6,13 +6,12 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 11:30:25 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 19:29:56 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 18:49:27 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "libft.h"
-#include <dirent.h>
 
 static	void	ls_trim_arg(char **argv, int *len)
 {
@@ -23,7 +22,7 @@ static	void	ls_trim_arg(char **argv, int *len)
 	i = 0;
 	j = 0;
 	old_len = *len;
-	while (i < old_len)
+while (i < old_len)
 	{
 		if (argv[i][0] == '\0' || argv[i][0] == 2)
 		{
@@ -51,7 +50,7 @@ int				ls_sort_argv(char **argv, int len)
 	n_dir = 0;
 	while (i < len)
 	{
-		if (argv[i][0] != '\0' && opendir(argv[i]) != NULL)
+		if (argv[i][0] != '\0' && ls_file_is_dir(argv[i]))
 		{
 			dup[n_dir++] = argv[i];
 			argv[i] = "";

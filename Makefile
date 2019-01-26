@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/18 17:49:02 by erli              #+#    #+#              #
-#    Updated: 2019/01/26 17:23:41 by erli             ###   ########.fr        #
+#    Updated: 2019/01/26 19:17:06 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,28 +21,29 @@ SRCS			= 	main.c				ls_merge_sort.c			ls_list.c		\
 					ls_print_format.c	ls_print_long.c			ls_print_mode.c	\
 					ls_make_path.c		ls_print_total_block_size.c				\
 					ls_print_links.c	ls_print_owner.c		ls_print_group.c\
-					ls_print_size.c		ls_print_date.c							\
-										ls_print_file_name.c					\
+					ls_print_size.c		ls_print_date.c			ls_get_width.c	\
+					ls_file_is_dir.c	ls_print_file_name.c					\
 
 OBJS			= 	$(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 
-CC				=	gcc
+CC				=	gcc -g
 
 CFLAG			=	-Wall -Werror -Wextra
 
-INCL			=	-I includes/ -I libft/includes/
+INCL			=	-I includes/ -I libft/includes/ 
 
 RM				=	rm -f
 
-LIB				=	libft/libft.a 
+MYLIB			=	libft/libft.a 
 
+LIB				=	-L libft -lft -lacl
 
 all				:	$(NAME)
 
-$(NAME)			:	$(OBJS) $(LIB) includes/ft_ls.h
-					$(CC) $(CFLAG) $(INCL) $(LIB) $(OBJS) -o $(NAME)
+$(NAME)			:	$(OBJS) $(MYLIB) includes/ft_ls.h
+					$(CC) $(CFLAG) $(INCL) $(OBJS) -o $(NAME) $(LIB)
 
-$(LIB)			:	
+$(MYLIB)			:	
 					@make -C libft/
 					@make -C libft/ clean
 

@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:32:09 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 18:57:46 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/26 18:57:05 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <dirent.h>
 
 static	void	manage_options_2(char c, int *options)
 {
@@ -121,13 +120,13 @@ int				main(int argc, char **argv)
 	{
 		ls_sort(argv + offset + 1, argc - offset - 1, options);
 		argc = ls_sort_argv(argv + (offset + 1), argc - offset - 1);
-	}
-	while (i < argc)
-	{
-		if (argv[i + offset + 1][0] != 0)
-			ls_list(argv[i + offset + 1], options);
-		i++;
-		if (i != argc && opendir(argv[i + offset + 1]) != NULL)
-			write(1, "\n", 1);
+		while (i < argc)
+		{
+			if (argv[i + offset + 1][0] != 0)
+				ls_list(argv[i + offset + 1], options);
+			i++;
+			if (i != argc && ls_file_is_dir(argv[i + offset + 1]))
+				write(1, "\n", 1);
+		}
 	}
 }

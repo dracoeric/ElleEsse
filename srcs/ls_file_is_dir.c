@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_date.c                                    :+:      :+:    :+:   */
+/*   ls_file_is_dir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/26 16:53:49 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 17:50:56 by erli             ###   ########.fr       */
+/*   Created: 2019/01/26 18:38:13 by erli              #+#    #+#             */
+/*   Updated: 2019/01/26 18:49:17 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 
-void			ls_print_date(t_ls_data *ls_data, int i)
+int			ls_file_is_dir(char *file)
 {
-	if (ls_data != NULL && i != 0)
-		ft_printf("date ");
+	DIR		*dirp;
+
+	if (!(dirp = opendir(file)))
+		return (0);
+	closedir(dirp);
+	return (1);
 }
