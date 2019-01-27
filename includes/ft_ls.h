@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:36:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/27 12:07:38 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/27 16:05:41 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define LS_OPT_D(x) (((x >> 8) & 1) == 1)
 # define LS_OPT_UG(x) (((x >> 9) & 1) == 1)
 # define LS_OPT_MULT(x) (((x >> 12) & 1) == 1)
+# define SIX_MONTHS 15778800
 
 typedef	struct	s_ls_data
 {
