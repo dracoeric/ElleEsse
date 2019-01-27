@@ -6,12 +6,11 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 17:38:33 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 17:41:18 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/27 13:01:12 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 
 unsigned int	ls_get_width(unsigned int nb)
 {

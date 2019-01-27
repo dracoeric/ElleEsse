@@ -6,14 +6,13 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:32:09 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 18:57:05 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/27 13:05:29 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "libft.h"
 #include <stdlib.h>
-#include <sys/stat.h>
 #include <stdio.h>
 #include <unistd.h>
 

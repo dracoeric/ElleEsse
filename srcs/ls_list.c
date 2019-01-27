@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 13:17:11 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 19:35:30 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/27 13:01:56 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ static	void	ls_get_stat_data_i(t_ls_data *ls_data, int i, int path_len)
 		len_gid = ft_strlen(getgrgid((ls_data->data)[i].st_gid)->gr_name);
 		if ((unsigned int)(ls_data->data)[i].st_nlink > ls_data->max_link)
 			ls_data->max_link = (ls_data->data)[i].st_nlink;
-		if ((unsigned int)(ls_data->data)[i].st_size > ls_data->max_size)
+		if (S_ISBLK((ls_data->data[i]).st_mode)
+			|| S_ISCHR((ls_data->data)[i].st_mode))
+			ls_max_major_minor(ls_data, i);
+		else if ((unsigned int)(ls_data->data)[i].st_size
+			> ls_data->max_size)
 			ls_data->max_size = (ls_data->data)[i].st_size;
 		if (len_uid > ls_data->max_uid)
 			ls_data->max_uid = len_uid;
@@ -76,6 +80,7 @@ static	void	ls_get_stat_data(t_ls_data *ls_data)
 
 	ls_data->max_link = 0;
 	ls_data->max_size = 0;
+	ls_data->max_minor = 0;
 	ls_data->max_uid = 0;
 	ls_data->max_gid = 0;
 	i = 0;
@@ -95,9 +100,7 @@ static	void	ls_print_list(char *str, int count, int options)
 	t_ls_data		ls_data[1];
 
 	ls_data->is_dir = ls_parse_arg(ls_data, str, arg, &count);
-	ft_printf("arg avant sort %ts\n", arg, count);
 	ls_sort(arg, count, options);
-	ft_printf("arg apres sort %ts\n", arg, count);
 	if (ls_data->is_dir == 1)
 		ls_trim(arg, &count, options);
 	ls_data->arg = arg;

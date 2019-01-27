@@ -6,17 +6,14 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 14:19:20 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 17:34:26 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/27 13:04:58 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include "libft.h"
-#include <sys/stat.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <sys/acl.h>
-#include <sys/types.h>
 #include <sys/xattr.h>
 
 static	void	ls_read_file_type(struct stat *data, char *str)

@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/18 17:49:02 by erli              #+#    #+#              #
-#    Updated: 2019/01/26 19:17:06 by erli             ###   ########.fr        #
+#    Updated: 2019/01/27 12:08:32 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,6 +23,8 @@ SRCS			= 	main.c				ls_merge_sort.c			ls_list.c		\
 					ls_print_links.c	ls_print_owner.c		ls_print_group.c\
 					ls_print_size.c		ls_print_date.c			ls_get_width.c	\
 					ls_file_is_dir.c	ls_print_file_name.c					\
+										ls_max_major_minor.c					\
+					ls_get_dev_major_minor.c
 
 OBJS			= 	$(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 

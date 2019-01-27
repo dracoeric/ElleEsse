@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_format.c                                  :+:      :+:    :+:   */
+/*   ls_get_dev_major_minor.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 13:00:48 by erli              #+#    #+#             */
-/*   Updated: 2019/01/27 13:02:39 by erli             ###   ########.fr       */
+/*   Created: 2019/01/27 11:36:06 by erli              #+#    #+#             */
+/*   Updated: 2019/01/27 12:58:49 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void			ls_print_format(t_ls_data *ls_data)
+void	ls_get_dev_major_minor(struct stat *data, unsigned int *tab)
 {
-	if (ls_data->count == 0)
-		return ;
-	if (LS_OPT_L(ls_data->options))
-		ls_print_long(ls_data);
+	tab[0] = (data->st_rdev >> 8);
+	tab[1] = (data->st_rdev & 255);
 }

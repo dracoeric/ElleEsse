@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:36:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/26 18:48:56 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/27 12:07:38 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef	struct	s_ls_data
 	int				options;
 	unsigned int	max_link;
 	unsigned int	max_size;
+	unsigned int	max_minor;
 	unsigned int	max_uid;
 	unsigned int	max_gid;
 }				t_ls_data;
@@ -61,6 +62,8 @@ void			ls_print_links(t_ls_data *ls_data, int i);
 void			ls_print_owner(t_ls_data *ls_data, int i);
 void			ls_print_group(t_ls_data *ls_data, int i);
 void			ls_print_size(t_ls_data *ls_data, int i);
+void			ls_max_major_minor(t_ls_data *ls_data, int i);
+void			ls_get_dev_major_minor(struct stat *data, unsigned int *tab);
 void			ls_print_date(t_ls_data *ls_data, int i);
 void			ls_print_file_name(t_ls_data *ls_data, int i);
 char			*ls_make_path(char *base_path, char *file, char *full_path);

@@ -6,12 +6,11 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 11:39:28 by erli              #+#    #+#             */
-/*   Updated: 2019/01/25 10:14:50 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/27 13:04:02 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
 
 void		ls_trim(char **arg, int *len, int options)
 {
