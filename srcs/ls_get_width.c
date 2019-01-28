@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 17:38:33 by erli              #+#    #+#             */
-/*   Updated: 2019/01/27 13:01:12 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/28 09:05:45 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ unsigned int	ls_get_width(unsigned int nb)
 
 	pow = 1;
 	width = 1;
-	while (nb / pow > 10)
+	while (nb / pow >= 10)
 	{
 		pow *= 10;
 		width++;

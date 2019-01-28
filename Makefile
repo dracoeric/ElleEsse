@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/18 17:49:02 by erli              #+#    #+#              #
-#    Updated: 2019/01/27 12:08:32 by erli             ###   ########.fr        #
+#    Updated: 2019/01/28 08:52:16 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -38,7 +38,7 @@ RM				=	rm -f
 
 MYLIB			=	libft/libft.a 
 
-LIB				=	-L libft -lft -lacl
+LIB				=	-L libft -lft #-lacl
 
 all				:	$(NAME)
 

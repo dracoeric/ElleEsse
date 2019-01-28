@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 16:53:49 by erli              #+#    #+#             */
-/*   Updated: 2019/01/27 17:09:30 by erli             ###   ########.fr       */
+/*   Updated: 2019/01/28 08:51:45 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,17 @@ void			ls_print_date(t_ls_data *ls_data, int i)
 	time(current);
 	if (LS_OPT_U(ls_data->options))
 	{
-		full_time = ctime(&(ls_data->data)[i].st_atim.tv_sec);
-		file_time = (ls_data->data)[i].st_atim.tv_sec;
+/*		full_time = ctime(&(ls_data->data)[i].st_atim.tv_sec);
+ *		file_time = (ls_data->data)[i].st_atim.tv_sec;
+ */		full_time = ctime(&(ls_data->data)[i].st_atimespec.tv_sec);
+		file_time = (ls_data->data)[i].st_atimespec.tv_sec;
 	}
 	else
 	{
-		full_time = ctime(&(ls_data->data)[i].st_mtim.tv_sec);
-		file_time = (ls_data->data)[i].st_mtim.tv_sec;
+/*		full_time = ctime(&(ls_data->data)[i].st_mtim.tv_sec);
+ *		file_time = (ls_data->data)[i].st_mtim.tv_sec;
+ */		full_time = ctime(&(ls_data->data)[i].st_mtimespec.tv_sec);
+		file_time = (ls_data->data)[i].st_mtimespec.tv_sec;
 	}
 	time_diff = *current - file_time;
 	if (time_diff > SIX_MONTHS || time_diff < -SIX_MONTHS)
