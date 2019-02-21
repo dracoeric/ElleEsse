@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/18 17:49:02 by erli              #+#    #+#              #
-#    Updated: 2019/01/28 08:52:16 by erli             ###   ########.fr        #
+#    Updated: 2019/02/21 17:39:11 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,14 +40,13 @@ MYLIB			=	libft/libft.a
 
 LIB				=	-L libft -lft #-lacl
 
-all				:	$(NAME)
+all				:	libft $(NAME)
 
 $(NAME)			:	$(OBJS) $(MYLIB) includes/ft_ls.h
 					$(CC) $(CFLAG) $(INCL) $(OBJS) -o $(NAME) $(LIB)
 
-$(MYLIB)			:	
+libft			:	
 					@make -C libft/
-					@make -C libft/ clean
 
 $(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c includes/ft_ls.h
 					@mkdir -p $(OBJSDIR)
@@ -76,4 +75,4 @@ reset			:
 					@make -C libft/ fclean
 					@rm -r objs libft/objs
 
-.PHONY			:	clean fclean delsav re reset 
+.PHONY			:	clean fclean delsav re reset libft
