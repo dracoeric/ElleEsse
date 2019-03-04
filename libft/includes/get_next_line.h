@@ -6,14 +6,14 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 16:42:05 by erli              #+#    #+#             */
-/*   Updated: 2018/11/12 13:38:04 by erli             ###   ########.fr       */
+/*   Updated: 2019/03/03 11:40:30 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 40
+# define GNL_B_SIZE 4095
 
 typedef	struct	s_bookmark
 {

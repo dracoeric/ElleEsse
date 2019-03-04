@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:36:55 by erli              #+#    #+#             */
-/*   Updated: 2019/01/27 16:05:41 by erli             ###   ########.fr       */
+/*   Updated: 2019/03/04 15:09:14 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@
 # include <sys/stat.h>
 # include <dirent.h>
 
-# define LS_OPT_L(x) ((x & 1) == 1)
-# define LS_OPT_UR(x) (((x >> 1) & 1) == 1)
-# define LS_OPT_A(x) (((x >> 2) & 1) == 1)
-# define LS_OPT_LR(x) (((x >> 3) & 1) == 1)
-# define LS_OPT_T(x) (((x >> 4) & 1) == 1)
-# define LS_OPT_U(x) (((x >> 5) & 1) == 1)
-# define LS_OPT_F(x) (((x >> 6) & 1) == 1)
-# define LS_OPT_LG(x) (((x >> 7) & 1) == 1)
-# define LS_OPT_D(x) (((x >> 8) & 1) == 1)
-# define LS_OPT_UG(x) (((x >> 9) & 1) == 1)
-# define LS_OPT_MULT(x) (((x >> 12) & 1) == 1)
 # define SIX_MONTHS 15778800
+
+# define LS_OPT_L 1
+# define LS_OPT_UR (1 << 1)
+# define LS_OPT_A (1 << 2)
+# define LS_OPT_LR (1 << 3)
+# define LS_OPT_T (1 << 4)
+# define LS_OPT_U (1 << 5)
+# define LS_OPT_F (1 << 6)
+# define LS_OPT_LG (1 << 7)
+# define LS_OPT_D (1 << 8)
+# define LS_OPT_UG (1 << 9)
+# define LS_OPT_MULT (1 << 12)
 
 typedef	struct	s_ls_data
 {

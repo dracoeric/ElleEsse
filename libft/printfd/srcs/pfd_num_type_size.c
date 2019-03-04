@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_format.c                                  :+:      :+:    :+:   */
+/*   pfd_num_type_size.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 13:00:48 by erli              #+#    #+#             */
-/*   Updated: 2019/03/04 15:00:38 by erli             ###   ########.fr       */
+/*   Created: 2019/02/25 17:49:59 by erli              #+#    #+#             */
+/*   Updated: 2019/02/27 11:27:06 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "ft_printfd.h"
 
-void			ls_print_format(t_ls_data *ls_data)
+size_t		pfd_num_type_size(int flags)
 {
-	if (ls_data->count == 0)
-		return ;
-	if (ls_data->options & LS_OPT_L)
-		ls_print_long(ls_data);
+	if (flags & HH_MOD)
+		return (sizeof(char));
+	if (flags & H_MOD)
+		return (sizeof(short));
+	if (flags & L_MOD)
+		return (sizeof(long));
+	if (flags & LL_MOD)
+		return (sizeof(long long));
+	return (sizeof(int));
 }

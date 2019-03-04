@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_format.c                                  :+:      :+:    :+:   */
+/*   pfd_arg_to_bin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 13:00:48 by erli              #+#    #+#             */
-/*   Updated: 2019/03/04 15:00:38 by erli             ###   ########.fr       */
+/*   Created: 2019/02/26 12:01:42 by erli              #+#    #+#             */
+/*   Updated: 2019/02/26 12:03:20 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "ft_printfd.h"
 
-void			ls_print_format(t_ls_data *ls_data)
+/*
+** Read memory zone the right amout of byte by reading data->tag, then writes
+** it's content in binary in buf
+*/
+
+int				pfd_arg_to_bin(t_pfd_data *data, void *ptr)
 {
-	if (ls_data->count == 0)
-		return ;
-	if (ls_data->options & LS_OPT_L)
-		ls_print_long(ls_data);
+	if (data == 0 || ptr == 0)
+		return (-1);
+	return (0);
 }

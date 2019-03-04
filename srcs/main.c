@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:32:09 by erli              #+#    #+#             */
-/*   Updated: 2019/01/27 13:05:29 by erli             ###   ########.fr       */
+/*   Updated: 2019/03/04 15:09:38 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ static	void	manage_options_2(char c, int *options)
 	char *str;
 
 	str = "ls: illegal option -- %c\nusage: ls [-GRadfgltu@] [file ...]\n";
-	if (c == 'g' && !(LS_OPT_LG(*options)))
+	if (c == 'g' && !(*options & LS_OPT_LG))
 	{
-		*options = (*options | 128);
-		*options = (*options & 2046);
+		*options = (*options | LS_OPT_LG);
+		*options = (*options & (unsigned int)(-1) - LS_OPT_L);
 	}
-	else if (c == 'd' && !(LS_OPT_D(*options)))
-		*options = (*options | 256);
-	else if (c == 'G' && !(LS_OPT_UG(*options)))
-		*options = (*options | 512);
+	else if (c == 'd' && !(*options & LS_OPT_D))
+		*options = (*options | LS_OPT_D);
+	else if (c == 'G' && !(*options & LS_OPT_UG))
+		*options = (*options | LS_OPT_UG);
 	else
 	{
 		ft_printf(str, c);
@@ -39,22 +39,22 @@ static	void	manage_options_2(char c, int *options)
 
 static	void	manage_option(char c, int *options)
 {
-	if (c == 'l' && !(LS_OPT_L(*options)) && !(LS_OPT_LG(*options)))
-		*options = (*options | 1);
-	else if (c == 'R' && !(LS_OPT_UR(*options)))
-		*options = (*options | 2);
-	else if (c == 'a' && !(LS_OPT_A(*options)) && !(LS_OPT_F(*options)))
-		*options = (*options | 4);
-	else if (c == 'r' && !(LS_OPT_LR(*options)))
-		*options = (*options | 8);
-	else if (c == 't' && !(LS_OPT_T(*options)) && !(LS_OPT_F(*options)))
-		*options = (*options | 16);
-	else if (c == 'u' && !(LS_OPT_U(*options)) && !(LS_OPT_F(*options)))
-		*options = (*options | 32);
-	else if (c == 'f' && !(LS_OPT_F(*options)))
+	if (c == 'l' && !(*options & LS_OPT_L) && !(*options & LS_OPT_LG))
+		*options = (*options | LS_OPT_L);
+	else if (c == 'R' && !(*options & LS_OPT_UR))
+		*options = (*options | LS_OPT_UR);
+	else if (c == 'a' && !(*options & LS_OPT_A) && !(*options & LS_OPT_F))
+		*options = (*options | LS_OPT_A);
+	else if (c == 'r' && !(*options & LS_OPT_LR))
+		*options = (*options | LS_OPT_LR);
+	else if (c == 't' && !(*options & LS_OPT_T) && !(*options & LS_OPT_F))
+		*options = (*options | LS_OPT_T);
+	else if (c == 'u' && !(*options & LS_OPT_U) && !(*options & LS_OPT_F))
+		*options = (*options | LS_OPT_U);
+	else if (c == 'f' && !(*options & LS_OPT_F))
 	{
-		*options = (*options | 64);
-		*options = (*options & 1995);
+		*options = (*options | LS_OPT_F);
+		*options &= ((unsigned int)(-1) - LS_OPT_A - LS_OPT_U - LS_OPT_T);
 	}
 	else
 		manage_options_2(c, options);

@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 13:17:11 by erli              #+#    #+#             */
-/*   Updated: 2019/01/27 13:01:56 by erli             ###   ########.fr       */
+/*   Updated: 2019/03/04 14:59:47 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static	void	ls_get_stat_data_i(t_ls_data *ls_data, int i, int path_len)
 	else
 		lstat(ls_make_path(ls_data->base_path, (ls_data->arg)[i], path),
 		(ls_data->data) + i);
-	if (LS_OPT_L(ls_data->options) || LS_OPT_LG(ls_data->options))
+	if (ls_data->options & LS_OPT_L || ls_data->options & LS_OPT_LG)
 	{
 		len_uid = ft_strlen(getpwuid((ls_data->data)[i].st_uid)->pw_name);
 		len_gid = ft_strlen(getgrgid((ls_data->data)[i].st_gid)->gr_name);
@@ -109,7 +109,7 @@ static	void	ls_print_list(char *str, int count, int options)
 	ls_data->count = count;
 	ls_data->data = data;
 	ls_get_stat_data(ls_data);
-	if (LS_OPT_MULT(options) && ls_data->is_dir == 1)
+	if (options & LS_OPT_MULT && ls_data->is_dir == 1)
 		ft_printf("%s:\n", str);
 	ls_print_format(ls_data);
 	if (ls_data->dirp != NULL)

@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 11:39:28 by erli              #+#    #+#             */
-/*   Updated: 2019/01/27 13:04:02 by erli             ###   ########.fr       */
+/*   Updated: 2019/03/04 15:10:05 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		ls_trim(char **arg, int *len, int options)
 	i = 0;
 	j = 0;
 	old_len = *len;
-	if (!LS_OPT_A(options))
+	if (!(options & LS_OPT_A))
 	{
 		while (i < old_len)
 		{

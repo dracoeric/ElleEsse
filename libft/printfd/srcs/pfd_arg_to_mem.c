@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   pfd_arg_to_mem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 17:27:14 by erli              #+#    #+#             */
-/*   Updated: 2019/03/04 14:32:47 by erli             ###   ########.fr       */
+/*   Created: 2019/02/26 12:00:35 by erli              #+#    #+#             */
+/*   Updated: 2019/02/26 12:03:53 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "ft_printfd.h"
 
-void	ft_bzero(void *s, size_t len)
+/*
+** Read the right amout of byte in memory pointed by ptr then right it in hex
+** in buf.
+*/
+
+int			pfd_arg_to_mem(t_pfd_data *data, void *ptr)
 {
-	unsigned char	*data;
-	unsigned int	i;
-
-	data = (unsigned char *)s;
-	i = 0;
-	while (i < len)
-	{
-		data[i] = '\0';
-		i++;
-	}
+	if (data == 0 || ptr == 0)
+		return (-1);
+	return (1);
 }

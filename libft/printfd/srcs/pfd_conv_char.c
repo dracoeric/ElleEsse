@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   pfd_conv_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 17:27:14 by erli              #+#    #+#             */
-/*   Updated: 2019/03/04 14:32:47 by erli             ###   ########.fr       */
+/*   Created: 2019/03/01 18:21:48 by erli              #+#    #+#             */
+/*   Updated: 2019/03/01 18:26:32 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "ft_printfd.h"
 
-void	ft_bzero(void *s, size_t len)
+int			pfd_conv_char(t_pfd_data *data, va_list ap)
 {
-	unsigned char	*data;
-	unsigned int	i;
+	unsigned char c;
 
-	data = (unsigned char *)s;
-	i = 0;
-	while (i < len)
-	{
-		data[i] = '\0';
-		i++;
-	}
+	c = (unsigned char)va_arg(ap, int);
+	return (pfd_add_width(data, (char *)&c, 1));
 }

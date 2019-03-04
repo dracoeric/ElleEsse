@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_format.c                                  :+:      :+:    :+:   */
+/*   pfd_write_whole_part_silde.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 13:00:48 by erli              #+#    #+#             */
-/*   Updated: 2019/03/04 15:00:38 by erli             ###   ########.fr       */
+/*   Created: 2019/03/01 16:47:42 by erli              #+#    #+#             */
+/*   Updated: 2019/03/01 17:44:59 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "ft_printfd.h"
+#include "libft.h"
 
-void			ls_print_format(t_ls_data *ls_data)
+/*
+** Print whole part. manage round up il E-conv and whole == 10.
+*/
+
+int				pfd_write_whole_part(t_pfd_data *data, char *str,
+					unsigned long long whole, size_t i)
 {
-	if (ls_data->count == 0)
-		return ;
-	if (ls_data->options & LS_OPT_L)
-		ls_print_long(ls_data);
+	if (whole == 0)
+		str[i] = '0';
+	while (whole != 0)
+	{
+		str[i--] = whole % 10 + '0';
+		whole /= 10;
+	}
+	return (pfd_remove_trailing_zeros(data, str, ft_strlen(str)));
 }

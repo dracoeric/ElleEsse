@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   pfd_add_str.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 17:27:14 by erli              #+#    #+#             */
-/*   Updated: 2019/03/04 14:32:47 by erli             ###   ########.fr       */
+/*   Created: 2019/02/25 18:18:32 by erli              #+#    #+#             */
+/*   Updated: 2019/03/04 13:46:13 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "ft_printfd.h"
 
-void	ft_bzero(void *s, size_t len)
+int		pfd_add_str(t_pfd_data *data, char *str, size_t start, size_t len)
 {
-	unsigned char	*data;
-	unsigned int	i;
+	size_t	i;
 
-	data = (unsigned char *)s;
+	if (data->cursor + len > PRINT_B_SIZE && pfd_unload_buf(data) < 0)
+		return (-1);
 	i = 0;
 	while (i < len)
 	{
-		data[i] = '\0';
+		data->buf[data->cursor + i] = str[start + i];
 		i++;
 	}
+	data->cursor += i;
+	return (1);
 }

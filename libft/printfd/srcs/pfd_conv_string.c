@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_file_name.c                               :+:      :+:    :+:   */
+/*   pfd_conv_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/26 16:57:06 by erli              #+#    #+#             */
-/*   Updated: 2019/03/04 14:58:10 by erli             ###   ########.fr       */
+/*   Created: 2019/03/01 18:28:02 by erli              #+#    #+#             */
+/*   Updated: 2019/03/04 13:06:09 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "ft_printfd.h"
 #include "libft.h"
-#include <unistd.h>
 
-void				ls_print_file_name(t_ls_data *ls_data, int i)
+int			pfd_conv_string(t_pfd_data *data, va_list ap)
 {
-	
-	write(1, (ls_data->arg)[i], ft_strlen((ls_data->arg)[i]));
-	write(1, "\n", 1);
+	char	*str;
+	size_t	len;
+
+	str = va_arg(ap, char *);
+	if (str == NULL && data->tag->precision != 0)
+		return (pfd_add_width(data, "(null)", 6));
+	len = (str == NULL ? 0 : ft_strlen(str));
+	if (!(data->tag->precision == -1 || len < (size_t)data->tag->precision))
+		len = (size_t)data->tag->precision;
+	return (pfd_add_width(data, str, len));
 }

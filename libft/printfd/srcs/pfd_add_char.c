@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_print_format.c                                  :+:      :+:    :+:   */
+/*   pfd_add_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 13:00:48 by erli              #+#    #+#             */
-/*   Updated: 2019/03/04 15:00:38 by erli             ###   ########.fr       */
+/*   Created: 2019/02/22 17:34:02 by erli              #+#    #+#             */
+/*   Updated: 2019/03/04 10:05:00 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "ft_printfd.h"
 
-void			ls_print_format(t_ls_data *ls_data)
+/*
+** Write a char in the buffer, if buffer is full, unloads it and bzeros it.
+*/
+
+int			pfd_add_char(t_pfd_data *data, char c)
 {
-	if (ls_data->count == 0)
-		return ;
-	if (ls_data->options & LS_OPT_L)
-		ls_print_long(ls_data);
+	if (data->cursor + 1 > PRINT_B_SIZE && pfd_unload_buf(data) < 0)
+		return (-1);
+	data->buf[data->cursor++] = c;
+	return (1);
 }

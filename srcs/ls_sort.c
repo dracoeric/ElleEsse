@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 10:51:32 by erli              #+#    #+#             */
-/*   Updated: 2019/01/28 08:46:33 by erli             ###   ########.fr       */
+/*   Updated: 2019/03/04 15:01:34 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ void			ls_sort(char **arg, int len, int options)
 {
 	if (len == 0)
 		return ;
-	if (LS_OPT_F(options))
+	if (options & LS_OPT_F)
 		return ;
-	if (LS_OPT_T(options) && LS_OPT_U(options))
+	if (options & LS_OPT_T && options & LS_OPT_U)
 		ls_merge_sort(arg, len, &ls_sort_acces_time);
-	else if (LS_OPT_T(options))
+	else if (options & LS_OPT_T)
 		ls_merge_sort(arg, len, &ls_sort_mod_time);
 	else
 		ls_merge_sort(arg, len, &ls_sort_lexi);
-	if (LS_OPT_LR(options))
+	if (options & LS_OPT_LR)
 		ls_reverse(arg, len);
 }

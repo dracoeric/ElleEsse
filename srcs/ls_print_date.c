@@ -6,7 +6,7 @@
 /*   By: erli <erli@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 16:53:49 by erli              #+#    #+#             */
-/*   Updated: 2019/01/28 08:51:45 by erli             ###   ########.fr       */
+/*   Updated: 2019/03/04 15:00:15 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			ls_print_date(t_ls_data *ls_data, int i)
 	char	*full_time;
 
 	time(current);
-	if (LS_OPT_U(ls_data->options))
+	if (ls_data->options & LS_OPT_U)
 	{
 /*		full_time = ctime(&(ls_data->data)[i].st_atim.tv_sec);
  *		file_time = (ls_data->data)[i].st_atim.tv_sec;

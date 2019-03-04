@@ -6,7 +6,7 @@
 #    By: erli <erli@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/18 17:49:02 by erli              #+#    #+#              #
-#    Updated: 2019/02/21 17:39:11 by erli             ###   ########.fr        #
+#    Updated: 2019/03/04 15:10:56 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -38,11 +38,18 @@ RM				=	rm -f
 
 MYLIB			=	libft/libft.a 
 
+HEADER			=	includes/ft_ls.h
+
 LIB				=	-L libft -lft #-lacl
+
+GREEN			=		"\x1B[32m"
+
+DEFAULT			=		"\x1B[0m"
 
 all				:	libft $(NAME)
 
-$(NAME)			:	$(OBJS) $(MYLIB) includes/ft_ls.h
+$(NAME)			:	$(OBJS) $(MYLIB) 
+					@echo "Compiling:" $(GREEN) $(NAME) $(DEFAULT)
 					$(CC) $(CFLAG) $(INCL) $(OBJS) -o $(NAME) $(LIB)
 
 libft			:	
@@ -52,6 +59,13 @@ $(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c includes/ft_ls.h
 					@mkdir -p $(OBJSDIR)
 					$(CC) -c $(CFLAG) $(INCL) $< -o $@
 
+norm			:	delsav
+					@echo "==== Norme" $(GREEN) "srcs" $(DEFAULT) "===="
+					norminette $(SRCSDIR)
+					@echo "==== Norme" $(GREEN) "includes" $(DEFAULT) "===="
+					norminette includes
+#					@echo "==== Norme" $(GREEN) "libft" $(DEFAULT) "===="
+#					make -C libft norm
 clean			:
 					@$(RM) $(OBJS)
 
@@ -71,8 +85,7 @@ delsav			:
 reset			:
 					@make delsav
 					@make fclean
-					@make -C libft/ delsav
-					@make -C libft/ fclean
-					@rm -r objs libft/objs
+					@make -C libft/ reset
+					@rm -r $(OBJSDIR)
 
 .PHONY			:	clean fclean delsav re reset libft
